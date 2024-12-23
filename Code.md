@@ -433,8 +433,46 @@ TreeSet<Cat>set = new TreeSet<>(new CatComparator());//是放在这里！！！�
 
 ```java
 //Map
+Map<String,Integer>map = new HashMap<>();
+        map.put("one",0);//被后面的覆盖了噢
+        map.put("one",1);
+        map.put("two",2);
+        map.put("three",3);
+
+        System.out.println(map.get("one")+map.get("two"));
+        if(map.containsKey("four")){
+            map.remove("four");
+        }else{
+            map.put("four",4);
+        }
+        map.clear();
 
 ```
+```java
+//LinkedHashMap 将键按照插入顺序排列
+//TreeMap 将键按照自然顺序排列
+```
+```java
+//keySet()
+//keySet().size()
+ for(String s:map.keySet()){
+           System.out.println(s+":"+map.get(s));
+       }
+//HashMap转换的是无序
+//LinkedHashMap转换的是插入顺序
+//TreeMap转换的是自然顺序
+```
+```java
+//工具类
+//数组
+![image](https://github.com/user-attachments/assets/c9032d0f-cb93-4d97-b926-28f9b248651c)
+
+//集合
+![image](https://github.com/user-attachments/assets/68497e55-3068-43b2-b74e-5dd2c4ea5d7f)
+
+```
+# Package,import
+
 
 # 类和对象
 
