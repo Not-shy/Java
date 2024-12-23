@@ -249,6 +249,11 @@ class Person{
  }
 ```
 
+
+![image](https://github.com/user-attachments/assets/3b3e79cc-e277-479a-aa85-2c24f24dfd1b)
+
+
+
 ```java
 //List
 
@@ -273,12 +278,162 @@ for(int i=0;i<list.size();i++){
 
 ```java
 //toString
-System.out.print("hello" + String);
+System.out.print("hello" + list);
 ```
 
 ```java
 //转换成数组
 list.toArray(arr);
+```
+
+
+
+```java
+//集合
+
+//HashSet
+//基于HashMap实现，可null，无顺序
+Set<Integer>set = new HashSet<>();
+        for(int i=0;i<10;i++){
+            set.add(i);
+        }
+
+        Set<Integer>set2 = new HashSet<>();
+//全部复制！！！！！！！！！！！！！！List也有这个函数
+        set2.addAll(set);
+
+        for(Integer i:set2){
+            System.out.println(i);
+        }
+        
+        if(set2.contains(3)) {
+            set2.remove(3);
+        }
+        System.out.println(set.size());
+```
+
+```java
+//交集
+set1.retainAll(set);//set1变成set和set1的交集
+```
+
+```java
+//LinkedHashSet
+//继承HashSet，但是用一个双向链表维护了插入顺序
+```
+
+```java
+//TreeSet
+//自然顺序，但不可容纳null
+TreeSet<Integer>set = new TreeSet<>();
+        for(int i=10;i>0;i--){
+            set.add(i);
+        }
+
+        for(Integer i:set){
+            System.out.println(i);
+        }
+```
+
+```java
+//对于HashSet和LinkedHashSet来说判断两个元素是否相同是根据hashcode，若相同再是equals
+class Cat{
+    private int size;
+    public Cat(int size){
+        this.size = size;
+    }
+    @Override
+    public int hashCode(){
+        return size;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        Cat c = (Cat)obj;
+        return c.size==this.size;
+    }
+}
+
+--main
+Set<Cat>set = new HashSet<>();
+
+        set.add(new Cat(5));
+        set.add(new Cat(5));
+        set.add(new Cat(4));
+
+        System.out.println(set.size());
+```
+
+```java
+/*TreeSet则是 1.该比较类实现接口Comparable，重写compareTo 2.重写一个实现接口Comparator<该类>的比较器，作为参数传入*/
+class Cat implements Comparable{
+    private int size;
+    public int getSize(){
+        return size;
+    }
+    public Cat(int size){
+        this.size = size;
+    }
+    @Override
+    public int compareTo(Object obj){
+        Cat c = (Cat)obj;
+        return c.size - this.size;
+    }
+}
+
+ TreeSet<Cat>set = new TreeSet<>();
+        for(int i=5;i>0;i--){
+            set.add(new Cat(i));
+        }
+
+        for(Cat i:set){
+            System.out.println(i.getSize());
+        }
+
+    }
+
+
+```
+
+```java
+class Cat {
+    private int size;
+    public int getSize(){
+        return size;
+    }
+    public Cat(int size){
+        this.size = size;
+    }
+
+}
+
+class CatComparator implements Comparator<Cat>{
+    @Override
+    public int compare(Cat o1, Cat o2) {
+        return o2.getSize()- o1.getSize();
+    }
+}
+
+--main
+TreeSet<Cat>set = new TreeSet<>(new CatComparator());//是放在这里！！！！！！！！
+        for(int i=5;i>0;i--){
+            set.add(new Cat(i));
+        }
+
+        for(Cat i:set){
+            System.out.println(i.getSize());
+        }
+
+```
+
+```java
+
+
+```
+
+```java
+//Map
+
 ```
 
 # 类和对象
