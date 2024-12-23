@@ -489,6 +489,7 @@ Map<String,Integer>map = new HashMap<>();
 
 ```java
 //构造函数与继承（三一原则）
+//构造子类一定会调用父类的构造函数！！！！！！！！！！
 class Person{
     public int age;
    public Person(){
@@ -531,10 +532,29 @@ class Cat extends Animal{
     }
 }
 
+class A {
+  public void func1(){
+    System.out.println("1");
+  }
+  public void func2(){
+    func1();
+  }
+}
+class B extends A{
+    public void func1(){
+  System.out.println("2");
+  }
+}
+
+--main
+B b = new B();
+b.func2();//"2"
+
 ```
 
 ```java
-//多态（向上转型）
+//多态（向上转型）(向下转型会抛异常)
+//会隐藏父类没有的函数（调用不了）
 class Animal{
     public  void yell(){
         System.out.println("Animal is yelling!");
@@ -552,6 +572,7 @@ class Dog extends Animal{
         System.out.println("Dog is yelling!");
     }
 }
+
 
 //构造
 Animal a = new Cat();
@@ -614,12 +635,107 @@ class Dog implements Animal{
 ```
 
 # 异常
+```java
+try{
+
+}catch(Exception e1){
+    throw new Exception;
+  }
 
 
+public void f1() throws IOException{
+  //try{}catch{}
+  }
+//调用f1的必须处理它-->try-catch/throws
+```
+```java
+//函数
+e.getMessage();
+e.printStackTrace();
+```
 # 常用类
+- Math.abs()
+
+- Math.pow(a,b)
+
+- Math.random():给定的是0-1之间的浮点数，可以根据乘法和加法运算改变其范围
+
+- Math.round():对一个浮点数四舍五入
+
+- Math.max(a,b)
+
+- Math.min(a,b)
+
+![image](https://github.com/user-attachments/assets/3810be76-0fbc-4337-9091-32a49bda2251)
 
 # 文件
+```java
+//创建文件和目录
+//创建目录
+File d = new File("c:/temp");//使用绝对路径字符串初始化
+if(!d.exists()){
+  d.mkdirs();//
+}
+System.out.println(d.isDirectory());
+//创建文件
+File f = new File("C:/temp/abc.txt");
+if(!d.exist()){
+  try{
+    f.createNewFile();//
+  }
+  catch(IOException e){
+    e.printStackTrace();
+  }
+}
+```
 
+```java
+//遍历d目录下所有文件信息
+File[] fs = d.listFiles();
+for(File f1:fs){
+  System.out.println(f1,getPath());
+}
+```
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        String inputFileName = "a.txt";
+        String outputFileName = "b.txt";
+        Map<String, Integer> map = new TreeMap<>();
+
+        // 使用 try-with-resources 自动关闭 BufferedReader
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(inputFileName))) {
+            String line;
+            while ((line = fileReader.readLine()) != null) {
+                String[] words = line.split("\\s+");
+                for (String str : words) {
+                    map.put(str, map.getOrDefault(str, 0) + 1);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // 打印异常信息而不是抛出 RuntimeException
+        }
+
+        // 使用 try-with-resources 自动关闭 BufferedWriter
+        try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(outputFileName))) {
+            for (String str : map.keySet()) {
+                fileWriter.write(str + " " + map.get(str));
+                fileWriter.newLine();
+            }
+            fileWriter.flush(); // 确保所有数据都被写入文件
+        } catch (IOException e) {
+            e.printStackTrace(); // 打印异常信息而不是抛出 RuntimeException
+        }
+    }
+}
+```
+![image](https://github.com/user-attachments/assets/b7107c12-6117-45a3-8cf9-571aea6d67a7)
+
+![image](https://github.com/user-attachments/assets/a0e2cdfb-0806-48ba-a70b-47ad1a9c1daa)
+
+![image](https://github.com/user-attachments/assets/cac61ce3-e4a3-449d-80b0-595194c420e4)
 
 
 
