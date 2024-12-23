@@ -161,6 +161,14 @@ for(int i=0;i<s1.length()&&index<s2.length();i++){
 }
 ```
 
+```java
+//转换成char数组
+s.toCharArray()
+ String s = "hello";
+ char[] str = s.toCharArray();
+ System.out.println(str);//也可以直接打出来
+```
+
 
 # 运算符
 ```java
@@ -197,7 +205,10 @@ for(int i=0;i<nums.length;i++){
 
 ```java
 //二维数组
-int[][] nums = new int[3][3];
+int[][] nums = new int[][]{
+                      {1,2,3,4},
+                      {1,2,3}
+                      };
 for(int i=0;i<nums.length;i++){
   for(int j=0;j<nums[i].length;j++){
     System.out.println(nums[i][j]);
@@ -241,8 +252,34 @@ class Person{
 ```java
 //List
 
+//ArrayList
+List<Integer>list = new ArrayList();
+for(int i=0;i<10;i++){
+    list.add(i);
+  }
+
+list.addFirst(-1);
+list.add(0,-2);
+
+for(int i=0;i<2;i++){
+    list.remove(0);
+  }
+
+for(int i=0;i<list.size();i++){
+  System.out.print(list.get(i)+" ");
+  }
+
 ```
 
+```java
+//toString
+System.out.print("hello" + String);
+```
+
+```java
+//转换成数组
+list.toArray(arr);
+```
 
 # 类和对象
 
