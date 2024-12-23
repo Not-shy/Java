@@ -472,11 +472,146 @@ Map<String,Integer>map = new HashMap<>();
 
 ```
 # Package,import
+- 在那个包下就package哪个包
+![image](https://github.com/user-attachments/assets/9b25e082-7bea-4547-b65f-9db82fa71189)
 
+- 若要用哪个包下的类/...，则import
+![image](https://github.com/user-attachments/assets/c7be5d40-0181-43ba-a3ce-4bdcb74297b5)
+
+# 值传递
+```java
+//new了几下就构造了几个对象
+//函数传参是值转递，基础类型不改变其值，对象不改变其指向，数组改变其值
+```
 
 # 类和对象
+![image](https://github.com/user-attachments/assets/1b3769d1-e47a-4d8b-ad7c-0b2301756019)
 
-# static、final
+```java
+//构造函数与继承（三一原则）
+class Person{
+    public int age;
+   public Person(){
+        
+    }
+   public Person(int age){
+        this();
+        this.age = age;
+    }
+}
+
+class Student extends Person{
+    public int grade;
+   public Student(){
+       super(18);//若调用的是无参，则父类必须要有无参构造函数
+   }
+   public Student(int grade){
+       this();
+       this.grade = grade;
+   }
+}
+```
+```java
+//单根继承，全继承自Object类，以下三条等价
+class Human{}
+class Human extends Object{}
+class Human extends java.lang.Object{}
+//覆盖
+class Animal{
+    public  void yell(){
+        System.out.println("Animal is yelling!");
+    }
+}
+class Cat extends Animal{
+
+    public void yell(){
+        super.yell();
+        System.out.println("Cat is yelling!");
+
+    }
+}
+
+```
+
+```java
+//多态（向上转型）
+class Animal{
+    public  void yell(){
+        System.out.println("Animal is yelling!");
+    }
+}
+class Cat extends Animal{
+
+    public void yell(){
+        System.out.println("Cat is yelling!");
+
+    }
+}
+class Dog extends Animal{
+    public  void yell(){
+        System.out.println("Dog is yelling!");
+    }
+}
+
+//构造
+Animal a = new Cat();
+        a.yell();
+
+//容器
+        Animal[] animals = new Animal[3];
+        animals[0] = new Animal();
+        animals[1] = new Cat();
+        animals[2] = new Dog();
+
+        for(Animal i:animals){
+            i.yell();
+        }
+//传参
+        animalyell(new Cat());
+
+
+    static void animalyell(Animal animal){
+        animal.yell();
+    }
+```
+```java
+//动态绑定与静态绑定
+//static函数不重写
+```
+
+```java
+//抽象类，不能实例化
+abstract class Animal{
+    public abstract void yell();//方法也要声明为抽象方法
+}
+Animal[] animals = new Animal[3];
+        animals[0] = new Animal(){
+            public void yell(){
+                System.out.println("Animal is yelling");
+            }
+        };
+        animals[1] = new Cat();
+        animals[2] = new Dog();
+
+//接口，不能实例化
+interface  Animal{
+    public void yell();
+}
+class Cat implements Animal{
+
+    public void yell(){
+        System.out.println("Cat is yelling!");
+
+    }
+}
+class Dog implements Animal{
+    public  void yell(){
+        System.out.println("Dog is yelling!");
+    }
+}
+//接口的继承
+//接口可继承多个接口，一个类可以实现多个接口，继承写在实现前面
+```
 
 # 异常
 
