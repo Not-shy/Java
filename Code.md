@@ -711,7 +711,11 @@ public class Main {
             while ((line = fileReader.readLine()) != null) {
                 String[] words = line.split("\\s+");
                 for (String str : words) {
-                    map.put(str, map.getOrDefault(str, 0) + 1);
+                    if(map.containsKey(str)){
+                      map.put(str,map.get(str)+1);
+                  }else{
+                      map.put(str,0);
+                    }
                 }
             }
         } catch (IOException e) {
