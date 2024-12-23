@@ -173,6 +173,77 @@ String s = "hello" + 2 + 3;
 
 # 数据结构
 
+```java
+//数组
+int i = in.nextInt();
+int[] nums = new int[i];//默认全是0
+double[] nums = new double[3];//默认全是0.0
+int[] n = new int[]{1,2,3};
+
+//匿名数组
+func(new int[]{1,2,3});
+
+//数组传参 会改变其值
+
+for(int i:nums){
+  i++;//在这里做出的改变并不会真的改变
+  System.out.println(i);
+}
+
+for(int i=0;i<nums.length;i++){
+  System.out.println(nums[i]);
+}
+```
+
+```java
+//二维数组
+int[][] nums = new int[3][3];
+for(int i=0;i<nums.length;i++){
+  for(int j=0;j<nums[i].length;j++){
+    System.out.println(nums[i][j]);
+  }
+}
+```
+
+```java
+//其它类型的对象
+class Person{
+ public int age;
+ public String gender;
+
+  Person(int age,String gender){
+    this.age = age;
+    this.gender = gender;
+  }
+@override
+  public String toString(){
+    String s = ""+age+" "+gender;
+    return s;
+  }
+}
+
+  public class Main{
+    public static void main(String[] args){
+      Person[] p = new Person[3];
+      for(int i=0;i<p.length;i++){
+          p[i] = new Person(i+18,"female");
+      }
+      for(Person i:p){
+        i.age = 0;//这是可以改的
+      }
+      for(Person i:p){
+      System.out.println(i);
+   }
+  }
+ }
+```
+
+```java
+//List
+
+```
+
+
 # 类和对象
 
 # static、final
