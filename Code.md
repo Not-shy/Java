@@ -744,7 +744,88 @@ public class Main {
 ![image](https://github.com/user-attachments/assets/cac61ce3-e4a3-449d-80b0-595194c420e4)
 
 
+```java
+//多态也能一起比大小
+import javax.swing.text.html.parser.TagElement;
+import java.util.*;
 
+class Animal {
+    int age; // 动物年龄
+    int mage; // 映射到人的年龄
+    String name; // 名字
+    static int[] dog = {0, 18, 23, 28, 32, 36, 40, 45, 50, 55, 60};
+    static int[] cat = {0, 15, 24, 28, 32, 36, 40, 44, 48, 52, 56};
+}
+    class Dog extends Animal implements Comparable {
+        Dog(String name,int age){
+            this.age = age;
+            this.name = name;
+            this.mage = dog[age];
+        }
+        @Override
+        public int compareTo(Object o) {
+            Dog d = (Dog)o;
+            return this.mage - d.mage;
+        }
+        // 实现你的构造函数与Comparable中的接口
+    }
+
+    class Cat extends Animal implements Comparable {
+        Cat(String name,int age){
+            this.age = age;
+            this.name = name;
+            this.mage = dog[age];
+        }
+        @Override
+        public int compareTo(Object o) {
+           Cat c = (Cat)o;
+           return this.mage - c.mage;
+        }
+        // 实现你的构造函数与Comparable中的接口
+
+    }
+
+
+public class HelloWorld {
+
+    public static void main(String[] args) {
+        Animal[] as = new Animal[4];
+
+        Scanner sc = new Scanner(System.in);
+
+        if (sc.hasNext()) {
+            as[0] = new Dog("dog1", sc.nextInt());
+        }
+        if (sc.hasNext()) {
+            as[1] = new Cat("cat1", sc.nextInt());
+        }
+        if (sc.hasNext()) {
+            as[2] = new Dog("dog2", sc.nextInt());
+        }
+        if (sc.hasNext()) {
+            as[3] = new Cat("cat2", sc.nextInt());
+        }
+
+        Comparator<Animal> animalComparator = new Comparator<Animal>() {
+            @Override
+            public int compare(Animal o1, Animal o2) {
+                return o1.mage - o2.mage;
+            }
+        };
+
+        Arrays.sort(as,animalComparator);
+        for(Animal a:as){
+            System.out.println(a.name+" "+a.age);
+        }
+    }
+
+
+
+
+}
+
+
+```
 
 
 
