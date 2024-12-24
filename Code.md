@@ -640,7 +640,9 @@ try{
 
 }catch(Exception e1){
     throw new Exception;
-  }
+  }finally{
+  ...//只要执行了try就一定会执行这个！！！！！！
+}
 
 
 public void f1() throws IOException{
